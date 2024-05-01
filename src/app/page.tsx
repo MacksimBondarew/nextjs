@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <ul>
-
+      <li>text</li>
       {course.lessons.map((lesson) => {
         return <li key={lesson.name}>
           <h2>{lesson.title}</h2>
