@@ -1,24 +1,20 @@
-import styles from "./page.module.css";
-import course from './course.json';
-import Lesson from "./lesson";
+import { getAllArticles } from './(server)/api';
 
-async function getAllCourses(): Promise<typeof course> {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(course), 1000)
-  })
-}
+export const metadata = {
+    title: 'My Project',
+    description: 'My Project',
+};
 
 export default async function Home() {
-  const courses = await getAllCourses();
-  return (
-    <main className={styles.main}>
-      <ul>
-      {courses.lessons.map((lesson) => {
-        return <li key={lesson.name}>
-<Lesson title={lesson.title} shortSummary={lesson.shortSummary} />
-        </li>
-      })}
-      </ul>
-    </main>
-  );
+    const allArticles = await getAllArticles();
+    return (
+        <>
+            <h1>My blog</h1>
+            <ul>
+                {allArticles.map((article) => (
+                  <li key={article.name}>{article.header}</li>
+                ))}
+            </ul>
+        </>
+    );
 }
